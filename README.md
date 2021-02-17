@@ -39,4 +39,23 @@ API: https://back-end-active-fitness.herokuapp.com/api
 | PUT - edit an instructor | /instructors/:id | { instructor_email: string (unique),</br> instructor_name: string,</br> instructor_password: string } | Admin or Instructor* | < Success Message > |
 | DELETE - delete an instructor | /instructors/:id | N/A | Admin or Instructor* | < Success Message > |
 
+Notes
+* - Currently all registered users can make all requests. Future update will check tokens for Admin user or Student/Instructor ID owner. (Pull request made.)
 
+Example Student Login Credentials:
+{ "student_email": "homer@springfield.com", "student_password": "Donuts123"}
+Example Instructor Login Credentials:
+{ "instructor_email": "mario@mushroomkingdom.com", "instructor_password": "Luigi123"}
+
+Other Features
+All passwords are hashed, then saved in the database.
+Token created on user login (expires in 7 days).
+Checks:
+Cannot register an email more than once (once each for student and instructor)
+Cannot duplicate-enroll a student in a class.
+Cannot unregister a student from a class if they were not registered to begin with.
+Future Updates
+Check tokens for Admin user or Student/Instructor ID. (Pull Request made)
+Current code is development mode only. Add code for testing and production modes.
+Write more back-end endpoint tests.
+Rewrite database to have only one user database, instead of separate databases for Students and Instructors.
