@@ -1,9 +1,10 @@
 # Back-End for Anywhere Fitness
-By Tzong-Lian Tsay
+By Tzong-Lian Tsay     
+Lambda School Student, Unit 4 Node.js   
 Nov 16-20, 2020
 
-API: https://back-end-active-fitness.herokuapp.com/api    
-\* - Currently all registered users can make all requests.  Future update will check tokens for Admin user or Student/Instructor ID owner.
+**API: https://back-end-active-fitness.herokuapp.com/api**   
+Project Brief: https://www.notion.so/Anywhere-Fitness-fc0ac268df284aaf8db3ae1913fa3134
 
 ### **_Endpoints for Classes_**
 | Method | Endpoint | Request Body | Token Type | JSON Response |
@@ -25,7 +26,7 @@ API: https://back-end-active-fitness.herokuapp.com/api
 | POST - Login | /students/login | { student_email: string,</br> student_password: string } | N/A |{ < Success Message >, </br> student_id: integer,</br> token: string } |
 | POST - add a student | /students/new | { student_email: string (unique),</br> student_name: string,</br> student_password: string } | N/A | < Success Message > |
 | PUT - edit a student | /students/:id | { student_email: string (unique),</br> student_name: string,</br> student_password: string } | Admin or Student* | < Success Message > |
-| DELETE - delete a student | /students/:id | N/A | < Success Message > |
+| DELETE - delete a student | /students/:id | N/A | Admin or Student* | < Success Message > |
 
 ### **_Endpoints for the Instructors_**
 | Method | Endpoint | Request Body | Token Type | JSON Response |
@@ -37,25 +38,26 @@ API: https://back-end-active-fitness.herokuapp.com/api
 | POST - add an instructor | /instructors/new | { instructor_email: string (unique),</br> instructor_name: string,</br> instructor_password: string } | N/A | < Success Message > |
 | POST - a new class by instructor's ID | /instructors/:id/classes/new | { class_name: string ,</br> class_type: string,</br> class_start: string,</br> class_duration: integer,</br> class_intensity: string,</br> class_location: string,</br> class_maxStudents: integer }| Admin or Instructor* | < Success Message > |
 | PUT - edit an instructor | /instructors/:id | { instructor_email: string (unique),</br> instructor_name: string,</br> instructor_password: string } | Admin or Instructor* | < Success Message > |
-| DELETE - delete an instructor | /instructors/:id | N/A | Admin or Instructor* | < Success Message > |
+| DELETE - delete an instructor | /instructors/:id | N/A | Admin or Instructor* | < Success Message > |    
 
-Notes
-* - Currently all registered users can make all requests. Future update will check tokens for Admin user or Student/Instructor ID owner. (Pull request made.)
+#### Notes
+\* - Currently all registered users can make all requests.  Future update will check tokens for Admin user or Student/Instructor ID owner. (Pull request made.)    
+    
+Example Student Login Credentials:    
+*{ "student_email": "homer@springfield.com", "student_password": "Donuts123"}*    
+Example Instructor Login Credentials:    
+*{ "instructor_email": "mario@mushroomkingdom.com", "instructor_password": "Luigi123"}*
 
-Example Student Login Credentials:
-{ "student_email": "homer@springfield.com", "student_password": "Donuts123"}
-Example Instructor Login Credentials:
-{ "instructor_email": "mario@mushroomkingdom.com", "instructor_password": "Luigi123"}
+### Other Features
+- Checks tokens for Admin user or Student/Instructor ID.
+- All passwords are hashed, then saved in the database.
+- Token created on user login (expires in 7 days).
+- Checks: 
+    - Cannot register an email more than once (once each for student and instructor)
+    - Cannot duplicate-enroll a student in a class.
+    - Cannot unregister a student from a class if they were not registered to begin with.
 
-Other Features
-All passwords are hashed, then saved in the database.
-Token created on user login (expires in 7 days).
-Checks:
-Cannot register an email more than once (once each for student and instructor)
-Cannot duplicate-enroll a student in a class.
-Cannot unregister a student from a class if they were not registered to begin with.
-Future Updates
-Check tokens for Admin user or Student/Instructor ID. (Pull Request made)
-Current code is development mode only. Add code for testing and production modes.
-Write more back-end endpoint tests.
-Rewrite database to have only one user database, instead of separate databases for Students and Instructors.
+### Future Updates
+- Current code is development mode only.  Add code for testing and production modes.
+- Write more back-end endpoint tests.
+- Rewrite database to have only one user database, instead of separate databases for Students and Instructors.
