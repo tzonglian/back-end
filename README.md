@@ -4,9 +4,25 @@ Lambda School Student, Unit 4 Node.js
 Nov 16-20, 2020
 
 **API: https://back-end-active-fitness.herokuapp.com/api**   
+Example Student Login Credentials:    
+*{ "student_email": "homer@springfield.com", "student_password": "Donuts123"}*    
+Example Instructor Login Credentials:    
+*{ "instructor_email": "mario@mushroomkingdom.com", "instructor_password": "Luigi123"}*
+
 Project Brief: https://www.notion.so/Anywhere-Fitness-fc0ac268df284aaf8db3ae1913fa3134<br>
 Corresponding Front-End Repo: https://github.com/BWeek-Anywhere-Fitness/front-end<br>
 Corresponding Front-End Deployment: https://anywherefitnessapp.netlify.app/<br>
+
+### Features
+- Created database tables and routes for instructors, students, and classes
+- Seeded data for Instructor, Students, and Classes 
+- All passwords are hashed, then saved in the database.
+- Checks tokens for Admin user or Student/Instructor ID.
+- Token created on user login (expires in 7 days).
+- Checks: 
+    - Cannot register an email more than once (once each for student and instructor)
+    - Cannot duplicate-enroll a student in a class.
+    - Cannot unregister a student from a class if they were not registered to begin with.
 
 ### **_Endpoints for Classes_**
 | Method | Endpoint | Request Body | Token Type | JSON Response |
@@ -43,23 +59,9 @@ Corresponding Front-End Deployment: https://anywherefitnessapp.netlify.app/<br>
 | DELETE - delete an instructor | /instructors/:id | N/A | Admin or Instructor* | < Success Message > |    
 
 #### Notes
-\* - Currently all registered users can make all requests.  Future update will check tokens for Admin user or Student/Instructor ID owner. (Pull request made.)    
-    
-Example Student Login Credentials:    
-*{ "student_email": "homer@springfield.com", "student_password": "Donuts123"}*    
-Example Instructor Login Credentials:    
-*{ "instructor_email": "mario@mushroomkingdom.com", "instructor_password": "Luigi123"}*
-
-### Other Features
-- Checks tokens for Admin user or Student/Instructor ID.
-- All passwords are hashed, then saved in the database.
-- Token created on user login (expires in 7 days).
-- Checks: 
-    - Cannot register an email more than once (once each for student and instructor)
-    - Cannot duplicate-enroll a student in a class.
-    - Cannot unregister a student from a class if they were not registered to begin with.
+\* - Checks token for Admin user or Student/Instructor ID owner.   
 
 ### Future Updates
 - Current code is development mode only.  Add code for testing and production modes.
 - Write more back-end endpoint tests.
-- Rewrite database to have only one user database, instead of separate databases for Students and Instructors.
+- Rewrite database to have only one user database, instead of separate tables for Students and Instructors.
