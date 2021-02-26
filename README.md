@@ -4,9 +4,9 @@ Lambda School Student, Unit 4 Node.js
 Nov 16-20, 2020
 
 **API: https://back-end-active-fitness.herokuapp.com/api**   
-Example Student Login Credentials:    
+- Example Student Login Credentials:    
 *{ "student_email": "homer@springfield.com", "student_password": "Donuts123"}*    
-Example Instructor Login Credentials:    
+- Example Instructor Login Credentials:    
 *{ "instructor_email": "mario@mushroomkingdom.com", "instructor_password": "Luigi123"}*
 
 Project Brief: https://www.notion.so/Anywhere-Fitness-fc0ac268df284aaf8db3ae1913fa3134<br>
